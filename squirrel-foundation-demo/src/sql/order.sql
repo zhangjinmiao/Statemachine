@@ -1,0 +1,7 @@
+CREATE TABLE `sals_order` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `state` varchar(50) DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
