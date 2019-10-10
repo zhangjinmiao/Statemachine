@@ -1,4 +1,4 @@
-package com.skyblue.statemachine.config;
+package com.skyblue.statemachine.config.form;
 public enum FormStates {
 	BLANK_FORM, // 空白表单
 	FULL_FORM, // 填写完表单

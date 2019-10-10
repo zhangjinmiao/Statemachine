@@ -1,5 +1,7 @@
 package com.skyblue.statemachine.config;
 
+import com.skyblue.statemachine.config.form.FormEvents;
+import com.skyblue.statemachine.config.form.FormStates;
 import java.util.EnumSet;
 
 import org.slf4j.Logger;

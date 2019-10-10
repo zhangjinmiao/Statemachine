@@ -1,5 +1,6 @@
-package com.skyblue.statemachine.config;
+package com.skyblue.statemachine.config.multie;
 
+import com.skyblue.statemachine.config.simple.OrderEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.Message;
@@ -28,7 +29,7 @@ private Logger logger = LoggerFactory.getLogger(getClass());
     }
     
     /**
-     * WAITING_FOR_RECEIVE->DONE 执行的动作
+     * WAITING_FOR_RECEIVE->DONE 执行的动作 接收多个参数
      */
     @OnTransition(source = "WAITING_FOR_RECEIVE", target = "DONE")
     public void receive(Message<OrderEvents> message) {

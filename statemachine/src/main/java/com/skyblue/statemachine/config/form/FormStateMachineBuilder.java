@@ -1,4 +1,6 @@
-package com.skyblue.statemachine.config;
+package com.skyblue.statemachine.config.form;
+import com.skyblue.statemachine.config.form.FormEvents;
+import com.skyblue.statemachine.config.form.FormStates;
 import java.util.EnumSet;
 
 import org.springframework.beans.factory.BeanFactory;

@@ -1,4 +1,7 @@
-package com.skyblue.statemachine.config;
+package com.skyblue.statemachine.config.persist;
+import com.skyblue.statemachine.config.Order;
+import com.skyblue.statemachine.config.simple.OrderEvents;
+import com.skyblue.statemachine.config.simple.OrderStates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +21,8 @@ public class PersistConfig {
 	
 	@Autowired
 	private InMemoryStateMachinePersist inMemoryStateMachinePersist;
-	
+
+	// 伪持久化
 	@Autowired
     private OrderStateMachinePersist orderStateMachinePersist;
 	

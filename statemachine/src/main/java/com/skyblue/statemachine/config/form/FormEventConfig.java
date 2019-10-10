@@ -1,5 +1,6 @@
-package com.skyblue.statemachine.config;
+package com.skyblue.statemachine.config.form;
 
+import com.skyblue.statemachine.config.form.FormEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.Message;

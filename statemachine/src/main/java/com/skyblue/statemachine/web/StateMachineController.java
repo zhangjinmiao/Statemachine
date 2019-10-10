@@ -15,15 +15,15 @@ import com.skyblue.statemachine.config.ComplexFormEvents;
 import com.skyblue.statemachine.config.ComplexFormStateMachineBuilder;
 import com.skyblue.statemachine.config.ComplexFormStates;
 import com.skyblue.statemachine.config.Form;
-import com.skyblue.statemachine.config.FormEvents;
-import com.skyblue.statemachine.config.FormStateMachineBuilder;
-import com.skyblue.statemachine.config.FormStates;
-import com.skyblue.statemachine.config.InMemoryStateMachinePersist;
-import com.skyblue.statemachine.config.MachineMap;
+import com.skyblue.statemachine.config.form.FormEvents;
+import com.skyblue.statemachine.config.form.FormStateMachineBuilder;
+import com.skyblue.statemachine.config.form.FormStates;
+import com.skyblue.statemachine.config.persist.InMemoryStateMachinePersist;
+import com.skyblue.statemachine.config.persist.MachineMap;
 import com.skyblue.statemachine.config.Order;
-import com.skyblue.statemachine.config.OrderEvents;
-import com.skyblue.statemachine.config.OrderStateMachineBuilder;
-import com.skyblue.statemachine.config.OrderStates;
+import com.skyblue.statemachine.config.simple.OrderEvents;
+import com.skyblue.statemachine.config.multie.OrderStateMachineBuilder;
+import com.skyblue.statemachine.config.simple.OrderStates;
 
 @RestController
 @RequestMapping("/statemachine")
@@ -56,7 +56,11 @@ public class StateMachineController {
 
 	@Autowired
 	private BeanFactory beanFactory;
-	
+
+	/**
+	 * 单个状态机
+	 * @throws Exception
+	 */
 	@RequestMapping("/testSingleOrderState")
 	public void testSingleOrderState() throws Exception {
 
@@ -76,8 +80,13 @@ public class StateMachineController {
 		// 获取最终状态
 		System.out.println("最终状态：" + orderSingleMachine.getState().getId());
 	}
-	
-	
+
+	/**
+	 * 多个状态机共存
+	 * 传递参数的message
+	 * @param orderId
+	 * @throws Exception
+	 */
 	@RequestMapping("/testOrderState")
 	public void testOrderState(String orderId) throws Exception {
 
@@ -93,7 +102,7 @@ public class StateMachineController {
 		// 触发RECEIVE事件
 		//stateMachine.sendEvent(OrderEvents.RECEIVE);
 		
-		//用message传递数据
+		//用message传递数据 传递多个参数
 		Order order = new Order(orderId, "547568678", "广东省深圳市", "13435465465", "RECEIVE");
 		Message<OrderEvents> message = MessageBuilder.withPayload(OrderEvents.RECEIVE).setHeader("order", order).setHeader("otherObj", "otherObjValue").build();
 		stateMachine.sendEvent(message);
@@ -194,7 +203,14 @@ public class StateMachineController {
 		stateMachine.sendEvent(message);
 		System.out.println("最终状态：" + stateMachine.getState().getId());
 	}
-	
+
+	/**
+	 * 持久化
+	 * @param machineId
+	 * @param events
+	 * @param id
+	 * @throws Exception
+	 */
 	@RequestMapping("/sendEvent")
     void sendEvent(String machineId,String events,String id) throws Exception{
 		if(machineId.equals("form")) {
@@ -234,7 +250,12 @@ public class StateMachineController {
 			sm.sendEvent(message);
 		}
     }
-	
+
+	/**
+	 * 保存状态机
+	 * @param id
+	 * @throws Exception
+	 */
 	@RequestMapping("/testMemoryPersister")
 	public void tesMemorytPersister(String id) throws Exception {
 		StateMachine<OrderStates, OrderEvents> stateMachine = orderStateMachineBuilder.build(beanFactory);
@@ -249,14 +270,24 @@ public class StateMachineController {
 		orderMemorypersister.persist(stateMachine, order.getId());
 	
 	}
-	
+
+	/**
+	 * 取出状态机
+	 * @param id
+	 * @throws Exception
+	 */
 	@RequestMapping("/testMemoryPersisterRestore")
 	public void testMemoryRestore(String id) throws Exception {
 		StateMachine<OrderStates, OrderEvents> stateMachine = orderStateMachineBuilder.build(beanFactory);
 		orderMemorypersister.restore(stateMachine, id);
 		System.out.println("恢复状态机后的状态为：" + stateMachine.getState().getId());
 	}
-	
+
+	/**
+	 * 持久化到 redis
+	 * @param id
+	 * @throws Exception
+	 */
 	@RequestMapping("/testRedisPersister")
 	public void testRedisPersister(String id) throws Exception {
 		StateMachine<OrderStates, OrderEvents> stateMachine = orderStateMachineBuilder.build(beanFactory);
@@ -269,14 +300,24 @@ public class StateMachineController {
 		//持久化stateMachine
 		orderRedisPersister.persist(stateMachine, order.getId());
 	}
-	
+
+	/**
+	 * 从 redis 取出
+	 * @param id
+	 * @throws Exception
+	 */
 	@RequestMapping("/testRedisPersisterRestore")
 	public void testRestore(String id) throws Exception {
 		StateMachine<OrderStates, OrderEvents> stateMachine = orderStateMachineBuilder.build(beanFactory);
 		orderRedisPersister.restore(stateMachine, id);
 		System.out.println("恢复状态机后的状态为：" + stateMachine.getState().getId());
 	}
-	
+
+	/**
+	 * 伪持久化
+	 * @param id
+	 * @throws Exception
+	 */
 	@RequestMapping("/testOrderRestore")
 	public void testOrderRestore(String id) throws Exception {
 		StateMachine<OrderStates, OrderEvents> stateMachine = orderStateMachineBuilder.build(beanFactory);

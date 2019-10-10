@@ -1,14 +1,19 @@
 # Statemachine 状态机调研
 
 ## [Spring-Statemachine](https://projects.spring.io/spring-statemachine/)
+- [官方demopwd](https://github.com/spring-projects/spring-statemachine)
 - statemachine 项目
   >[系列介绍](https://my.oschina.net/u/173343?q=statemachine)，一共讲了8节，从简单 demo 到企业级实战，比较系统。
-
+  
+  >[系列讲解](https://www.jianshu.com/nb/39884074)- 作者之前在淘宝，现在51信用卡，代码较多，比较复杂。
 - goudaner-platform 项目
   >[Spring StateMachine订单业务实战（持久化，事物，异常）](https://blog.csdn.net/weixin_37352094/article/details/90040553)，结合实际订单业务的项目，可简单参考。
 
 - springboot-statemachine 项目
   >[与 Spring Boot 结合，使用Spring StateMachine，快速实现一个状态机](https://github.com/hacker-and-painter/springboot-statemachine)
+
+### 讲解
+- [服务端指南 | 状态机设计](https://segmentfault.com/a/1190000012835620)
 
 
 ## [Squirrel-Foundation](https://github.com/hekailiang/squirrel)

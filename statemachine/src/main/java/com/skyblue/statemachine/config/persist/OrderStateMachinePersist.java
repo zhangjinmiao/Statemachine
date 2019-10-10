@@ -1,4 +1,7 @@
-package com.skyblue.statemachine.config;
+package com.skyblue.statemachine.config.persist;
+import com.skyblue.statemachine.config.Order;
+import com.skyblue.statemachine.config.simple.OrderEvents;
+import com.skyblue.statemachine.config.simple.OrderStates;
 import org.springframework.statemachine.StateMachineContext;
 import org.springframework.statemachine.StateMachinePersist;
 import org.springframework.statemachine.support.DefaultStateMachineContext;

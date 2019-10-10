@@ -1,4 +1,4 @@
-package com.skyblue.statemachine.config;
+package com.skyblue.statemachine.config.simple;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

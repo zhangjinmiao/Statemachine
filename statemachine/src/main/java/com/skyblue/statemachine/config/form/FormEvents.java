@@ -1,4 +1,4 @@
-package com.skyblue.statemachine.config;
+package com.skyblue.statemachine.config.form;
 public enum FormEvents {
 	WRITE, // 填写
 	CONFIRM, // 校验

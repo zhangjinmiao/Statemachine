@@ -1,4 +1,6 @@
-package com.skyblue.statemachine.config;
+package com.skyblue.statemachine.config.multie;
+import com.skyblue.statemachine.config.simple.OrderEvents;
+import com.skyblue.statemachine.config.simple.OrderStates;
 import java.util.EnumSet;
 
 import org.springframework.beans.factory.BeanFactory;
