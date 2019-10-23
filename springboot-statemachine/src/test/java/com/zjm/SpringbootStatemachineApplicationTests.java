@@ -27,8 +27,8 @@ public class SpringbootStatemachineApplicationTests {
 		//触发PAY事件
 		stateMachine.sendEvent(Events.PAY);
 
-		//触发RECEIVE事件
-		//stateMachine.sendEvent(Events.RECEIVE);
+//		//触发RECEIVE事件
+//		stateMachine.sendEvent(Events.RECEIVE);
 
 		Order order = new Order("35349645567", "547568678", "广东省深圳市", "13435465465", "RECEIVE");
 		Message<Events> message = MessageBuilder.withPayload(Events.RECEIVE).setHeader("order", order).build();
